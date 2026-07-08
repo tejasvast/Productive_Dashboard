@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link
+  href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css"
+  rel="stylesheet"
+/>
+</head>
+<body data-theme="dark">
+    
+    <nav class="card">
+        <h1 id="title">Productivity Dashboard</h1>
+
+        <button id="themeBtn">
+            <i class="ri-moon-line"></i>
+        </button>
+    </nav>
+
+    <main id="dashboard">
+        <div class="info">
+        <div class="summary card">
+        <div class="datetime">
+            <div id="day"></div>
+          <div id="time"></div>
+        </div>
+
+        <div id="temp">
+
+          </div>
+        </div>
+        <div class="quote card">
+                <h6>Daily Quote</h6>
+                <p id= "Dailyquote"></p>
+                <h5 id = "author">-author name</h6>
+        </div>
+        </div>
+        <div class="allcard">
+             <div class="task card" id="goalCard">
+                <div class="top">
+                    <span><i class="ri-focus-2-line"></i></span>
+                    <h3>Daily Goals</h3>
+                </div>
+            </div>
+
+
+            <div class="task card" id="todocard">
+                <div class="top">
+                    <span><i class="ri-todo-line"></i></span>
+                    <h3>To-Do list</h3>
+                </div>
+            </div>
+
+
+            <div class="task card">
+                <div class="top">
+                    <span><i class="ri-timer-line"></i></span>
+                    <h3>Pomodoro Timer</h3>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+
+    <section id="goalPage" class="page">
+    
+        <button id="backGoal" class="backBtn">
+            <i class="ri-arrow-left-line"></i>
+            Back
+        </button>
+    
+    
+        <div class="goal-container">
+    
+            <input type="text" id="goalInput" placeholder="Enter Goal">
+    
+            <button id="addGoal">
+                Add Goal
+            </button>
+    
+            
+    
+        </div>
+
+        <div class="goals">
+            <ul id="goalList"></ul>
+        </div>
+       
+    
+    </section>
+
+    <div id ='todo_page' class="todopage">
+        <div class="btn">
+        <button id="todo_BackGoal" class="backBtn">
+            <i class="ri-arrow-left-line"></i>
+            Back
+        </button>
+        <button id="addtask">
+            <i class="ri-add-line"></i>
+            Add Task</button>
+        </div>
+        
+        <div class="list">
+    <div class="task1">
+    <div class="task-left">
+        <input type="checkbox" class="task-check">
+
+        <div class="task-content">
+            <h3>Learn JavaScript</h3>
+            <p>Complete DOM Manipulation chapter.</p>
+        </div>
+    </div>
+
+    <button class="deleteTask">
+        <i class="ri-delete-bin-line"></i>
+    </button>
+            </div>
+    <div class="task1">
+    <div class="task-left">
+        <input type="checkbox" class="task-check">
+
+        <div class="task-content">
+            <h3>Learn JavaScript</h3>
+            <p>Complete DOM Manipulation chapter.</p>
+        </div>
+    </div>
+
+    <button class="deleteTask">
+        <i class="ri-delete-bin-line"></i>
+    </button>
+            </div>
+        </div>
+    </div>
+
+<!-- Task Popup -->
+<div id="taskModal" class="taskmodal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+            <h2>Add New Task</h2>
+
+            <button id="closeModal">
+                <i class="ri-close-line"></i>
+            </button>
+        </div>
+
+        <input
+            type="text"
+            id="taskTitle"
+            placeholder="Task Title"
+        >
+
+        <textarea
+            id="taskDescription"
+            placeholder="Task Description"
+        ></textarea>
+
+        <button id="saveTask">
+            Save Task
+        </button>
+
+    </div>
+
+</div>
+</div>
+    <script src="script.js"></script>
+</body>
+</html>
