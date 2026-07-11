@@ -1124,6 +1124,7 @@ main{
     .timer-circle svg{
         width:220px;
         height:220px;
+       display:none;
     }
 
     #timer{
