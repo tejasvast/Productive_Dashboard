@@ -292,6 +292,48 @@ taskModal.addEventListener("click", (e)=>{
 
 });
 
+const task=document.getElementById("taskstore");
+
+const taskStore = JSON.parse(localStorage.getItem("tasks")) || [];
+
+renderTask()
+
+
+function renderTask(){
+
+    task.innerHTML = "";
+    taskStore.forEach((element, index) => {
+
+        task.innerHTML +=`
+        <div class="task1">
+        <div class="task-left">
+
+            <input type="checkbox" class="task-check">
+
+            <div class="task-content">
+
+                <h3>${element.title}</h3>
+
+                <p>${element.desc}</p>
+
+            </div>
+
+        </div>
+
+        <button onclick="deleteTask(${index})" class="deleteTask" >
+
+            <i class="ri-delete-bin-line"></i>
+
+        </button>
+        </div>
+
+    `;
+
+
+        
+    }); 
+
+}
 
 // Save Task
 saveTask.addEventListener("click", ()=>{
@@ -300,6 +342,8 @@ saveTask.addEventListener("click", ()=>{
 
     const desc = descInput.value.trim();
 
+
+
     if(title===""){
 
         alert("Enter Task Title");
@@ -307,36 +351,16 @@ saveTask.addEventListener("click", ()=>{
         return;
 
     }
+    taskStore.push({
+        title,
+        desc
+    });
 
-    const task=document.createElement("div");
 
-    task.className="task1";
 
-    task.innerHTML=`
-
-        <div class="task-left">
-
-            <input type="checkbox" class="task-check">
-
-            <div class="task-content">
-
-                <h3>${title}</h3>
-
-                <p>${desc}</p>
-
-            </div>
-
-        </div>
-
-        <button class="deleteTask">
-
-            <i class="ri-delete-bin-line"></i>
-
-        </button>
-
-    `;
-
-    taskList.appendChild(task);
+    renderTask()
+    
+    localStorage.setItem("tasks", JSON.stringify(taskStore));
 
     titleInput.value="";
 
@@ -347,16 +371,26 @@ saveTask.addEventListener("click", ()=>{
 });
 
 
+function deleteTask(index) {
 
-taskList.addEventListener("click",(e)=>{
+    taskStore.splice(index, 1);
 
-    if(e.target.closest(".deleteTask")){
+    localStorage.setItem("tasks", JSON.stringify(taskStore));
 
-        e.target.closest(".task1").remove();
+    renderTask();
 
-    }
+}
 
-});
+
+// taskList.addEventListener("click",(e)=>{
+
+//     if(e.target.closest(".deleteTask")){
+
+//         e.target.closest(".task1").remove();
+
+//     }
+
+// });
 
 taskList.addEventListener("change",(e)=>{
 
@@ -371,3 +405,133 @@ taskList.addEventListener("change",(e)=>{
     }
 
 });
+
+
+
+
+const pomodoroCard = document.getElementById("pomodoroCard");
+console.log(pomodoroCard)
+const pomodoroPage = document.getElementById("pomodoroPage");
+console.log(pomodoroPage)
+const backPomodoro = document.getElementById("backPomodoro");
+console.log(backPomodoro)
+
+
+pomodoroCard.addEventListener("click",()=>{
+
+    dashboard.style.display="none";
+
+    goalPage.classList.remove("active");
+
+    todopage.classList.remove("todoactive");
+
+    pomodoroPage.classList.add("active");
+
+    title.innerText="Focus Timer";
+
+});
+
+backPomodoro.addEventListener("click",()=>{
+
+    pomodoroPage.classList.remove("active");
+
+    dashboard.style.display="block";
+
+    title.innerText="Dashboard";
+
+});
+
+const timer=document.getElementById("timer");
+
+const startBtn=document.getElementById("startBtn");
+const pauseBtn=document.getElementById("pauseBtn");
+const resetBtn=document.getElementById("resetBtn");
+
+const modeBtns=document.querySelectorAll(".mode");
+
+let totalSeconds=1500;
+let secondsLeft=1500;
+let interval=null;
+
+function updateDisplay(){
+
+    const min=Math.floor(secondsLeft/60);
+
+    const sec=secondsLeft%60;
+
+    timer.innerText=
+        `${String(min).padStart(2,"0")}:${String(sec).padStart(2,"0")}`;
+
+}
+
+function startTimer(){
+
+    if(interval) return;
+
+    interval=setInterval(()=>{
+
+        if(secondsLeft>0){
+
+            secondsLeft--;
+
+            updateDisplay();
+
+        }else{
+
+            clearInterval(interval);
+
+            interval=null;
+
+            alert("Pomodoro Finished!");
+
+        }
+
+    },1000);
+
+}
+
+function pauseTimer(){
+
+    clearInterval(interval);
+
+    interval=null;
+
+}
+
+function resetTimer(){
+
+    clearInterval(interval);
+
+    interval=null;
+
+    secondsLeft=totalSeconds;
+
+    updateDisplay();
+
+}
+
+startBtn.onclick=startTimer;
+
+pauseBtn.onclick=pauseTimer;
+
+resetBtn.onclick=resetTimer;
+
+modeBtns.forEach(btn=>{
+
+    btn.onclick=()=>{
+
+        modeBtns.forEach(b=>b.classList.remove("active"));
+
+        btn.classList.add("active");
+
+        totalSeconds=Number(btn.dataset.time)*60;
+
+        secondsLeft=totalSeconds;
+
+        resetTimer();
+
+    }
+
+});
+
+updateDisplay();
