@@ -13,7 +13,7 @@
 <body data-theme="dark">
     
     <nav class="card">
-        <h1 id="title">Productivity Dashboard</h1>
+        <h1 id="title">Dashboard</h1>
 
         <button id="themeBtn">
             <i class="ri-moon-line"></i>
@@ -55,10 +55,10 @@
             </div>
 
 
-            <div class="task card">
+            <div class="task card" id="pomodoroCard">
                 <div class="top">
                     <span><i class="ri-timer-line"></i></span>
-                    <h3>Pomodoro Timer</h3>
+                    <h3>Focus Timer</h3>
                 </div>
             </div>
         </div>
@@ -104,35 +104,8 @@
             Add Task</button>
         </div>
         
-        <div class="list">
-    <div class="task1">
-    <div class="task-left">
-        <input type="checkbox" class="task-check">
-
-        <div class="task-content">
-            <h3>Learn JavaScript</h3>
-            <p>Complete DOM Manipulation chapter.</p>
-        </div>
-    </div>
-
-    <button class="deleteTask">
-        <i class="ri-delete-bin-line"></i>
-    </button>
-            </div>
-    <div class="task1">
-    <div class="task-left">
-        <input type="checkbox" class="task-check">
-
-        <div class="task-content">
-            <h3>Learn JavaScript</h3>
-            <p>Complete DOM Manipulation chapter.</p>
-        </div>
-    </div>
-
-    <button class="deleteTask">
-        <i class="ri-delete-bin-line"></i>
-    </button>
-            </div>
+        <div class="list" id="taskstore">
+   
         </div>
     </div>
 
@@ -168,6 +141,151 @@
 
 </div>
 </div>
+
+<section id="pomodoroPage" class="page">
+
+    <button id="backPomodoro" class="backBtn">
+        <i class="ri-arrow-left-line"></i>
+        Back
+    </button>
+
+    <div class="pomodoro">
+
+        <div class="pomodoro-top">
+
+            <h2>
+                <i class="ri-timer-flash-line"></i>
+                Focus Timer
+            </h2>
+
+            <div class="session">
+                Session #1
+            </div>
+
+        </div>
+
+        <!-- Mode Buttons -->
+
+        <div class="mode-buttons">
+
+            <button class="mode active" data-time="25">
+                🍅 Focus
+            </button>
+
+            <button class="mode" data-time="5">
+                ☕ Short Break
+            </button>
+
+            <button class="mode" data-time="15">
+                🌴 Long Break
+            </button>
+
+        </div>
+
+        <!-- Timer -->
+
+        <div class="timer-circle">
+
+            <svg width="320" height="320">
+
+                <circle
+                    class="bg"
+                    cx="160"
+                    cy="160"
+                    r="130">
+                </circle>
+
+                <circle
+                    id="progress"
+                    class="progress"
+                    cx="160"
+                    cy="160"
+                    r="130">
+                </circle>
+
+            </svg>
+
+            <div class="timer-content">
+
+                <span class="timer-label">
+                    Focus Time
+                </span>
+
+                <h1 id="timer">
+                    25:00
+                </h1>
+
+                <p id="status">
+                    Stay focused 🚀
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- Controls -->
+
+        <div class="controls">
+
+            <button id="startBtn">
+                <i class="ri-play-fill"></i>
+            </button>
+
+            <button id="pauseBtn">
+                <i class="ri-pause-fill"></i>
+            </button>
+
+            <button id="resetBtn">
+                <i class="ri-refresh-line"></i>
+            </button>
+
+        </div>
+
+        <!-- Statistics -->
+
+        <div class="stats">
+
+            <div class="stat card">
+
+                <i class="ri-checkbox-circle-fill"></i>
+
+                <h2 id="completedCount">
+                    0
+                </h2>
+
+                <p>Completed</p>
+
+            </div>
+
+            <div class="stat card">
+
+                <i class="ri-fire-fill"></i>
+
+                <h2 id="focusTime">
+                    0m
+                </h2>
+
+                <p>Focus Time</p>
+
+            </div>
+
+            <div class="stat card">
+
+                <i class="ri-award-fill"></i>
+
+                <h2 id="streak">
+                    0
+                </h2>
+
+                <p>Streak</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
     <script src="script.js"></script>
 </body>
 </html>
